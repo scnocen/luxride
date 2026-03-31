@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuxRide | Booking</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .booking-page {
+      padding: 140px 0 80px;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #050816 0%, #070b1d 100%);
+      position: relative;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .booking-summary,
+    .booking-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 215, 0, 0.14);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+    }
+
+    .booking-summary img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .booking-summary-content {
+      padding: 28px;
+    }
+
+    .booking-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #f3c969;
+      background: rgba(243, 201, 105, 0.12);
+      border: 1px solid rgba(243, 201, 105, 0.2);
+      margin-bottom: 14px;
+    }
+
+    .booking-summary h1 {
+      color: #fff;
+      font-size: 38px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .booking-summary p {
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .summary-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    .summary-spec {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .summary-spec span {
+      display: block;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .summary-spec strong {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .summary-price {
+      margin-top: 8px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .summary-price span {
+      display: block;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .summary-price strong {
+      color: #f3c969;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .booking-card {
+      padding: 30px;
+    }
+
+    .booking-card h2 {
+      color: #fff;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .booking-card .muted {
+      margin-bottom: 22px;
+      display: block;
+    }
+
+    .booking-form-page {
+      display: grid;
+      gap: 16px;
+    }
+
+    .booking-form-page .form-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    .booking-form-page .form-row.two {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .booking-form-page label {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .booking-form-page input,
+    .booking-form-page select,
+    .booking-form-page textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: 0.25s ease;
+      font-family: inherit;
+    }
+
+    .booking-form-page input:focus,
+    .booking-form-page select:focus,
+    .booking-form-page textarea:focus {
+      border-color: #f3c969;
+      box-shadow: 0 0 0 2px rgba(243, 201, 105, 0.12);
+    }
+
+    .booking-form-page textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .booking-form-page select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='gold' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 42px;
+    }
+
+    .booking-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .booking-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.58);
+      line-height: 1.7;
+    }
+
+    .success-box {
+      display: none;
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(30, 170, 90, 0.12);
+      border: 1px solid rgba(30, 170, 90, 0.28);
+      color: #d9ffe7;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 992px) {
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .booking-card,
+      .booking-summary-content {
+        padding: 22px;
+      }
+
+      .booking-summary h1,
+      .booking-card h2 {
+        font-size: 30px;
+      }
+
+      .booking-form-page .form-row.two,
+      .summary-specs {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-summary img {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p>Loading Booking...</p>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/970000000000" target="_blank">
+    WhatsApp
+  </a>
+
+  <!-- Navbar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>LuxRide</span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cars.html" class="btn btn-outline">Browse Cars</a>
+
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Booking Section -->
+  <section class="booking-page">
+    <div class="container">
+      <div class="booking-grid">
+
+        <div class="booking-summary reveal">
+          <img id="bookingCarImage" src="" alt="Selected Car">
+
+          <div class="booking-summary-content">
+            <span class="booking-badge" id="bookingCarCategory">Loading...</span>
+            <h1 id="bookingCarName">Loading...</h1>
+            <p id="bookingCarDescription">
+              Vehicle details are loading...
+            </p>
+
+            <div class="summary-specs">
+              <div class="summary-spec">
+                <span>Transmission</span>
+                <strong id="bookingCarTransmission">-</strong>
+              </div>
+
+              <div class="summary-spec">
+                <span>Seats</span>
+                <strong id="bookingCarSeats">-</strong>
+              </div>
+
+              <div class="summary-spec">
+                <span>Fuel Type</span>
+                <strong id="bookingCarFuel">-</strong>
+              </div>
+
+              <div class="summary-spec">
+                <span>Availability</span>
+                <strong id="bookingCarAvailability">-</strong>
+              </div>
+            </div>
+
+            <div class="summary-price">
+              <span>Rental Price</span>
+              <strong id="bookingCarPrice">$0/day</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-card reveal">
+          <h2>Book This Car</h2>
+          <span class="muted">Fill in your booking details and submit your reservation request.</span>
+
+          <form class="booking-form-page" id="bookingForm">
+            <div class="form-row two">
+              <div>
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your full name" required>
+              </div>
+
+              <div>
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" id="phoneNumber" placeholder="+970..." required>
+              </div>
+            </div>
+
+            <div class="form-row two">
+              <div>
+                <label for="emailAddress">Email Address</label>
+                <input type="email" id="emailAddress" placeholder="your@email.com">
+              </div>
+
+              <div>
+                <label for="pickupLocation">Pickup Location</label>
+                <input type="text" id="pickupLocation" placeholder="Nablus, Ramallah...">
+              </div>
+            </div>
+
+            <div class="form-row two">
+              <div>
+                <label for="pickupDate">Pickup Date</label>
+                <input type="date" id="pickupDate" required>
+              </div>
+
+              <div>
+                <label for="returnDate">Return Date</label>
+                <input type="date" id="returnDate" required>
+              </div>
+            </div>
+
+            <div class="form-row two">
+              <div>
+                <label for="pickupTime">Pickup Time</label>
+                <select id="pickupTime">
+                  <option value="">Select time</option>
+                  <option>08:00 AM</option>
+                  <option>09:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>12:00 PM</option>
+                  <option>01:00 PM</option>
+                  <option>02:00 PM</option>
+                  <option>03:00 PM</option>
+                  <option>04:00 PM</option>
+                  <option>05:00 PM</option>
+                  <option>06:00 PM</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod">
+                  <option value="">Select method</option>
+                  <option>Cash on Pickup</option>
+                  <option>Card on Pickup</option>
+                  <option>Bank Transfer</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" placeholder="Any extra details or requests..."></textarea>
+            </div>
+
+            <div class="booking-actions">
+              <button type="submit" class="btn btn-primary">Confirm Booking</button>
+              <a href="cars.html" class="btn btn-outline">Back to Cars</a>
+            </div>
+
+            <p class="booking-note">
+              This form is now connected to the backend and saves bookings in the database.
+            </p>
+
+            <div class="success-box" id="successBox">
+              Your booking request has been submitted successfully.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="section section-dark" style="padding-top: 20px;">
+    <div class="container">
+      <footer class="footer">
+        <p>© 2026 LuxRide. All rights reserved.</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const carKey = params.get("car") || "bmw-m5";
+
+    const bookingCarName = document.getElementById("bookingCarName");
+    const bookingCarCategory = document.getElementById("bookingCarCategory");
+    const bookingCarPrice = document.getElementById("bookingCarPrice");
+    const bookingCarTransmission = document.getElementById("bookingCarTransmission");
+    const bookingCarSeats = document.getElementById("bookingCarSeats");
+    const bookingCarFuel = document.getElementById("bookingCarFuel");
+    const bookingCarAvailability = document.getElementById("bookingCarAvailability");
+    const bookingCarImage = document.getElementById("bookingCarImage");
+    const bookingCarDescription = document.getElementById("bookingCarDescription");
+
+    const bookingForm = document.getElementById("bookingForm");
+    const successBox = document.getElementById("successBox");
+
+    async function loadBookingCar() {
+      try {
+        const response = await fetch(`http://localhost:5000/api/cars/${carKey}`);
+
+        if (!response.ok) {
+          throw new Error("Car not found");
+        }
+
+        const car = await response.json();
+
+        bookingCarName.textContent = car.name;
+        bookingCarCategory.textContent = car.category;
+        bookingCarPrice.textContent = `$${Number(car.price_per_day)}/day`;
+        bookingCarTransmission.textContent = car.transmission;
+        bookingCarSeats.textContent = `${car.seats} Seats`;
+        bookingCarFuel.textContent = car.fuel;
+        bookingCarAvailability.textContent = car.availability;
+        bookingCarImage.src = car.image;
+        bookingCarImage.alt = car.name;
+        bookingCarDescription.textContent = car.description;
+      } catch (error) {
+        console.error("Error loading booking car:", error);
+        successBox.style.display = "block";
+        successBox.textContent = "Failed to load car details.";
+        successBox.style.background = "rgba(255, 80, 80, 0.12)";
+        successBox.style.border = "1px solid rgba(255, 80, 80, 0.28)";
+        successBox.style.color = "#ffd7d7";
+      }
+    }
+
+    bookingForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const data = {
+        car_name: bookingCarName.textContent,
+        customer_name: document.getElementById("fullName").value,
+        phone: document.getElementById("phoneNumber").value,
+        pickup_date: document.getElementById("pickupDate").value,
+        return_date: document.getElementById("returnDate").value
+      };
+
+      try {
+        const response = await fetch("http://localhost:5000/api/bookings", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || "Booking failed");
+        }
+
+        successBox.style.display = "block";
+        successBox.textContent = "Your booking has been saved successfully!";
+        successBox.style.background = "rgba(30, 170, 90, 0.12)";
+        successBox.style.border = "1px solid rgba(30, 170, 90, 0.28)";
+        successBox.style.color = "#d9ffe7";
+
+        bookingForm.reset();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } catch (error) {
+        console.error("Booking error:", error);
+        successBox.style.display = "block";
+        successBox.textContent = "Failed to save booking. Please try again.";
+        successBox.style.background = "rgba(255, 80, 80, 0.12)";
+        successBox.style.border = "1px solid rgba(255, 80, 80, 0.28)";
+        successBox.style.color = "#ffd7d7";
+      }
+    });
+
+    loadBookingCar();
+  </script>
+</body>
+</html>

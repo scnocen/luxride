@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuxRide | Car Details</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .details-section {
+      padding: 140px 0 80px;
+      position: relative;
+      background: linear-gradient(180deg, #050816 0%, #070b1d 100%);
+      min-height: 100vh;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .details-image-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .details-image-box img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .details-info-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .car-tag {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #f3c969;
+      background: rgba(243, 201, 105, 0.1);
+      border: 1px solid rgba(243, 201, 105, 0.18);
+      margin-bottom: 14px;
+    }
+
+    .details-title {
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .details-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .price-row .label {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .price-row .value {
+      color: #f3c969;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .spec-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .spec-box span {
+      display: block;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .spec-box strong {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .details-block {
+      margin-bottom: 28px;
+    }
+
+    .details-block h3 {
+      color: #fff;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .details-block p {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+    }
+
+    .details-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .policy-box {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255, 215, 0, 0.12);
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .policy-box h3 {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .policy-box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.9;
+    }
+
+    .error-box {
+      margin-top: 24px;
+      background: rgba(255, 80, 80, 0.12);
+      border: 1px solid rgba(255, 80, 80, 0.25);
+      color: #ffd7d7;
+      padding: 16px 18px;
+      border-radius: 16px;
+      display: none;
+    }
+
+    @media (max-width: 992px) {
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .details-image-box img {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .details-title {
+        font-size: 32px;
+      }
+
+      .specs-grid,
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .details-info-card {
+        padding: 22px;
+      }
+
+      .details-image-box img {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p>Loading Car Details...</p>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/970000000000" target="_blank">
+    WhatsApp
+  </a>
+
+  <!-- Navbar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>LuxRide</span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cars.html" class="btn btn-outline">Browse Cars</a>
+
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Car Details -->
+  <section class="details-section">
+    <div class="container">
+      <div class="details-grid">
+
+        <div class="details-image-box reveal">
+          <img id="carImage" src="" alt="Car Image">
+        </div>
+
+        <div class="details-info-card reveal">
+          <span class="car-tag" id="carCategory">Luxury Car</span>
+          <h1 class="details-title" id="carName">Loading...</h1>
+          <p class="details-sub" id="carSubtitle">
+            Please wait while we load the vehicle details.
+          </p>
+
+          <div class="price-row">
+            <div>
+              <div class="label">Rental Price</div>
+              <div class="value" id="carPrice">$0/day</div>
+            </div>
+            <a id="reserveNowBtn" href="booking.html" class="btn btn-primary">Reserve Now</a>
+          </div>
+
+          <div class="specs-grid">
+            <div class="spec-box">
+              <span>Transmission</span>
+              <strong id="carTransmission">-</strong>
+            </div>
+
+            <div class="spec-box">
+              <span>Seats</span>
+              <strong id="carSeats">-</strong>
+            </div>
+
+            <div class="spec-box">
+              <span>Fuel Type</span>
+              <strong id="carFuel">-</strong>
+            </div>
+
+            <div class="spec-box">
+              <span>Availability</span>
+              <strong id="carAvailability">-</strong>
+            </div>
+          </div>
+
+          <div class="details-block">
+            <h3>Description</h3>
+            <p id="carDescription">
+              Vehicle description will appear here.
+            </p>
+          </div>
+
+          <div class="details-block">
+            <h3>Features</h3>
+            <ul class="feature-list" id="carFeatures">
+              <li>Premium Comfort</li>
+              <li>Modern Technology</li>
+              <li>Professional Service</li>
+              <li>Well Maintained</li>
+            </ul>
+          </div>
+
+          <div class="details-actions">
+            <a id="bookThisCarBtn" href="booking.html" class="btn btn-primary">Book This Car</a>
+            <a href="cars.html" class="btn btn-outline">Back to Cars</a>
+          </div>
+
+          <div class="error-box" id="errorBox">
+            Failed to load car details. Please make sure the backend server is running.
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-box reveal">
+        <h3>Rental Policy</h3>
+        <ul>
+          <li>Valid driving license and ID are required at pickup.</li>
+          <li>Minimum rental age may vary depending on the vehicle type.</li>
+          <li>Basic insurance is included with all rentals.</li>
+          <li>Late returns may be subject to additional charges.</li>
+          <li>For premium and VIP cars, extra verification may be requested.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="section section-dark" style="padding-top: 20px;">
+    <div class="container">
+      <footer class="footer">
+        <p>© 2026 LuxRide. All rights reserved.</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const carKey = params.get("car") || "bmw-m5";
+
+    const carNameEl = document.getElementById("carName");
+    const carCategoryEl = document.getElementById("carCategory");
+    const carPriceEl = document.getElementById("carPrice");
+    const carTransmissionEl = document.getElementById("carTransmission");
+    const carSeatsEl = document.getElementById("carSeats");
+    const carFuelEl = document.getElementById("carFuel");
+    const carAvailabilityEl = document.getElementById("carAvailability");
+    const carImageEl = document.getElementById("carImage");
+    const carSubtitleEl = document.getElementById("carSubtitle");
+    const carDescriptionEl = document.getElementById("carDescription");
+    const carFeaturesEl = document.getElementById("carFeatures");
+    const reserveNowBtn = document.getElementById("reserveNowBtn");
+    const bookThisCarBtn = document.getElementById("bookThisCarBtn");
+    const errorBox = document.getElementById("errorBox");
+
+    function buildSubtitle(car) {
+      return `${car.category} with ${car.transmission.toLowerCase()} transmission, ${car.seats} seats, and ${car.fuel.toLowerCase()} engine for a premium driving experience.`;
+    }
+
+    function buildFeatures(car) {
+      const features = [
+        `${car.transmission} Transmission`,
+        `${car.seats} Comfortable Seats`,
+        `${car.fuel} Engine`,
+        `${car.category} Class`,
+        `${car.availability} Status`,
+        "Well Maintained Vehicle"
+      ];
+
+      return features;
+    }
+
+    async function loadCarDetails() {
+      try {
+        const response = await fetch(`http://localhost:5000/api/cars/${carKey}`);
+
+        if (!response.ok) {
+          throw new Error("Car not found");
+        }
+
+        const car = await response.json();
+
+        carNameEl.textContent = car.name;
+        carCategoryEl.textContent = car.category;
+        carPriceEl.textContent = `$${Number(car.price_per_day)}/day`;
+        carTransmissionEl.textContent = car.transmission;
+        carSeatsEl.textContent = `${car.seats} Seats`;
+        carFuelEl.textContent = car.fuel;
+        carAvailabilityEl.textContent = car.availability;
+        carImageEl.src = car.image;
+        carImageEl.alt = car.name;
+        carSubtitleEl.textContent = buildSubtitle(car);
+        carDescriptionEl.textContent = car.description;
+
+        reserveNowBtn.href = `booking.html?car=${carKey}`;
+        bookThisCarBtn.href = `booking.html?car=${carKey}`;
+
+        const features = buildFeatures(car);
+        carFeaturesEl.innerHTML = "";
+
+        features.forEach((feature) => {
+          const li = document.createElement("li");
+          li.textContent = feature;
+          carFeaturesEl.appendChild(li);
+        });
+      } catch (error) {
+        console.error("Error loading car details:", error);
+        errorBox.style.display = "block";
+        carNameEl.textContent = "Car not found";
+        carSubtitleEl.textContent = "Unable to load vehicle information at the moment.";
+      }
+    }
+
+    loadCarDetails();
+  </script>
+</body>
+</html>
+
+

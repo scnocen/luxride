@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuxRide | Cars</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p>Loading LuxRide Cars...</p>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/970567681108?text=Hello%20I%20want%20to%20rent%20a%20car" target="_blank">
+    WhatsApp
+  </a>
+
+  <!-- Navbar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>LuxRide</span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cars.html" class="btn btn-outline">Browse Cars</a>
+
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="hero" style="min-height: 70vh; padding-top: 140px;" id="cars-page">
+    <div class="hero-bg"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-text reveal">
+        <p class="hero-badge">Our Premium Fleet</p>
+        <h1>Choose Your <span class="gold">Perfect Car</span></h1>
+        <p class="hero-sub">
+          Browse our available vehicles and find the right car for your trip,
+          lifestyle, and budget.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#all-cars" class="btn btn-primary">View Fleet</a>
+          <a href="index.html#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <h3>50+</h3>
+            <p>Available Cars</p>
+          </div>
+          <div class="stat">
+            <h3>10+</h3>
+            <p>Luxury Brands</p>
+          </div>
+          <div class="stat">
+            <h3>24/7</h3>
+            <p>Customer Care</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <h2>Find Your Ride</h2>
+        <p class="muted">Use the filters below to explore the right car for you.</p>
+
+        <form class="booking-form" id="carSearchForm">
+          <div class="form-row">
+            <label for="searchName">Search by Name</label>
+            <input type="text" id="searchName" placeholder="BMW, Audi, Mercedes..." />
+          </div>
+
+          <div class="form-row">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+              <option value="">All Categories</option>
+              <option value="luxury">Luxury</option>
+              <option value="suv">SUV</option>
+              <option value="sport">Sport</option>
+              <option value="electric">Electric</option>
+              <option value="vip">VIP</option>
+            </select>
+          </div>
+
+          <div class="form-row two">
+            <div>
+              <label for="transmissionFilter">Transmission</label>
+              <select id="transmissionFilter">
+                <option value="">Any</option>
+                <option value="automatic">Automatic</option>
+                <option value="manual">Manual</option>
+              </select>
+            </div>
+            <div>
+              <label for="fuelFilter">Fuel Type</label>
+              <select id="fuelFilter">
+                <option value="">Any</option>
+                <option value="petrol">Petrol</option>
+                <option value="diesel">Diesel</option>
+                <option value="electric">Electric</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary full" type="submit">Search Cars</button>
+          <button class="btn btn-outline full" type="button" id="resetFilters" style="margin-top: 12px;">
+            Reset Filters
+          </button>
+          <p class="small-note">Cars will now be loaded from the database.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="floating-shapes">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- All Cars -->
+  <section class="section" id="all-cars">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Available Cars</h2>
+        <p class="muted">Select from our premium collection of vehicles.</p>
+      </div>
+
+      <p id="resultsInfo" class="muted" style="margin-bottom: 20px;"></p>
+
+      <!-- هنا سيتم حقن السيارات من API -->
+      <div class="cars-grid" id="carsContainer"></div>
+
+      <p id="noResultsMessage" style="display: none; text-align: center; margin-top: 30px; color: #cfcfcf; font-size: 18px;">
+        No cars found matching your search.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Need Help Choosing a Car?</h2>
+        <p class="muted">Our team is ready to help you find the best option for your trip.</p>
+      </div>
+
+      <div class="hero-buttons" style="justify-content:center;">
+        <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
+        <a href="index.html" class="btn btn-outline">Back Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="section section-dark" style="padding-top: 0;">
+    <div class="container">
+      <footer class="footer">
+        <p>© 2026 LuxRide. All rights reserved.</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

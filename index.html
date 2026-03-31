@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuxRide | Car Rental</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p>Loading LuxRide...</p>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp" href="https://wa.me/970567681108?text=Hello%20I%20want%20to%20rent%20a%20car" target="_blank">
+  WhatsApp
+</a>
+
+  <!-- Navbar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>LuxRide</span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cars.html" class="btn btn-outline">Browse Cars</a>
+
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-text reveal">
+        <p class="hero-badge">Premium Car Rental Experience</p>
+        <h1>Rent Your Dream Car <span class="gold">Today</span></h1>
+        <p class="hero-sub">
+          Discover luxury vehicles, smooth browsing, affordable plans, and 24/7 support.
+          Your next trip starts here.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="cars.html" class="btn btn-primary">Explore Cars</a>
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <h3>250+</h3>
+            <p>Luxury Cars</p>
+          </div>
+          <div class="stat">
+            <h3>12K+</h3>
+            <p>Happy Clients</p>
+          </div>
+          <div class="stat">
+            <h3>24/7</h3>
+            <p>Support</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <h2>Find Your Perfect Car</h2>
+        <p class="muted">Browse our collection and choose the ideal vehicle for your trip.</p>
+
+        <div class="booking-form">
+          <div class="form-row">
+            <label>Available Categories</label>
+            <input type="text" value="Sedan • SUV • Sport • VIP" readonly />
+          </div>
+
+          <div class="form-row">
+            <label>Your Journey Starts Here</label>
+            <input type="text" value="Go to Cars page and explore all available vehicles" readonly />
+          </div>
+
+          <a href="cars.html" class="btn btn-primary full">Browse Cars</a>
+          <p class="small-note">Search, compare, and reserve the right car بسهولة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="floating-shapes">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- Featured Cars -->
+  <section class="section" id="cars">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Featured Cars</h2>
+        <p class="muted">Choose from our premium collection with the best prices.</p>
+      </div>
+
+      <div class="cars-grid">
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=80" alt="car">
+          <div class="car-info">
+            <h3>BMW M5</h3>
+            <p class="muted">Automatic • 5 Seats • Petrol</p>
+            <div class="car-bottom">
+              <span class="price">$120/day</span>
+              <a class="mini-btn" href="car-details.html">View</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80" alt="car">
+          <div class="car-info">
+            <h3>Mercedes C-Class</h3>
+            <p class="muted">Automatic • 5 Seats • Petrol</p>
+            <div class="car-bottom">
+              <span class="price">$95/day</span>
+              <a class="mini-btn" href="car-details.html">View</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" alt="car">
+          <div class="car-info">
+            <h3>Audi RS7</h3>
+            <p class="muted">Automatic • 4 Seats • Petrol</p>
+            <div class="car-bottom">
+              <span class="price">$150/day</span>
+              <a class="mini-btn" href="car-details.html">View</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card reveal">
+          <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80" alt="car">
+          <div class="car-info">
+            <h3>Range Rover</h3>
+            <p class="muted">Automatic • 7 Seats • Diesel</p>
+            <div class="car-bottom">
+              <span class="price">$180/day</span>
+              <a class="mini-btn" href="car-details.html">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section-dark" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Why Choose LuxRide?</h2>
+        <p class="muted">We provide premium service with maximum comfort and safety.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <h3>24/7 Support</h3>
+          <p>We are always available for help and customer service.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <h3>Insurance Included</h3>
+          <p>Drive with peace of mind with full insurance coverage.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <h3>Fast Delivery</h3>
+          <p>We deliver the car to your location quickly and professionally.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <h3>Best Pricing</h3>
+          <p>Affordable daily and monthly rental plans for everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Pricing Plans</h2>
+        <p class="muted">Choose the plan that fits your lifestyle.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <h3>Basic</h3>
+          <p class="muted">For short trips</p>
+          <h2>$39<span>/day</span></h2>
+          <ul>
+            <li>Standard cars</li>
+            <li>Free cancellation</li>
+            <li>Basic insurance</li>
+          </ul>
+          <a class="btn btn-outline full" href="#contact">Choose Plan</a>
+        </div>
+
+        <div class="price-card featured reveal">
+          <p class="popular">Most Popular</p>
+          <h3>Premium</h3>
+          <p class="muted">Best value</p>
+          <h2>$89<span>/day</span></h2>
+          <ul>
+            <li>Luxury cars</li>
+            <li>Priority support</li>
+            <li>Full insurance</li>
+          </ul>
+          <a class="btn btn-primary full" href="#contact">Choose Plan</a>
+        </div>
+
+        <div class="price-card reveal">
+          <h3>VIP</h3>
+          <p class="muted">For special occasions</p>
+          <h2>$149<span>/day</span></h2>
+          <ul>
+            <li>VIP cars</li>
+            <li>Driver option</li>
+            <li>Premium insurance</li>
+          </ul>
+          <a class="btn btn-outline full" href="#contact">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Customer Reviews</h2>
+        <p class="muted">Real experiences from our clients.</p>
+      </div>
+
+      <div class="testimonials reveal">
+        <div class="testimonial-card active">
+          <p>"LuxRide made my trip amazing. Smooth booking and the car was spotless!"</p>
+          <h4>- Ahmed S.</h4>
+        </div>
+
+        <div class="testimonial-card">
+          <p>"Best rental service I ever tried. Fast delivery and premium vehicles."</p>
+          <h4>- Lina K.</h4>
+        </div>
+
+        <div class="testimonial-card">
+          <p>"Luxury cars at affordable prices. Support team was super helpful."</p>
+          <h4>- Omar A.</h4>
+        </div>
+      </div>
+
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Frequently Asked Questions</h2>
+        <p class="muted">Quick answers for your rental questions.</p>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Do I need a credit card to book?
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. You can browse the cars first, then reserve the vehicle that suits you best.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Is insurance included in the rental price?
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, basic insurance is included. Premium plans include full coverage.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Can you deliver the car to my location?
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, we offer delivery service to your location with fast response.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section-dark" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Contact Us</h2>
+        <p class="muted">Send us a message and we will respond quickly.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>LuxRide Rentals</h3>
+          <p class="muted">Premium car rental service with fast booking and luxury options.</p>
+
+          <div class="info-box">
+            <p><b>Email:</b> support@luxride.com</p>
+            <p><b>Phone:</b> +970567681108</p>
+            <p><b>Location:</b> Palestine</p>
+          </div>
+        </div>
+
+        <form class="contact-form reveal">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" required></textarea>
+          <button class="btn btn-primary full">Send Message</button>
+        </form>
+      </div>
+
+      <footer class="footer">
+        <p>© 2026 LuxRide. All rights reserved.</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
