@@ -118,6 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function normalizeCategory(category) {
+    if (!category) return "";
+
     const value = category.toLowerCase();
 
     if (value.includes("luxury")) return "luxury";
@@ -130,23 +132,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function createCarCard(car) {
-    const slug = slugifyCarName(car.name);
-    const category = normalizeCategory(car.category);
-    const transmission = car.transmission.toLowerCase();
-    const fuel = car.fuel.toLowerCase();
+    const slug = slugifyCarName(car.name || "");
+    const category = normalizeCategory(car.category || "");
+    const transmission = (car.transmission || "").toLowerCase();
+    const fuel = (car.fuel || "").toLowerCase();
 
     return `
       <div class="car-card reveal"
-           data-name="${car.name.toLowerCase()}"
+           data-name="${(car.name || "").toLowerCase()}"
            data-category="${category}"
            data-transmission="${transmission}"
            data-fuel="${fuel}">
-        <img src="${car.image}" alt="${car.name}">
+        <img src="${car.image || ""}" alt="${car.name || "Car"}">
         <div class="car-info">
-          <h3>${car.name}</h3>
-          <p class="muted">${car.transmission} • ${car.seats} Seats • ${car.fuel}</p>
+          <h3>${car.name || "Unknown Car"}</h3>
+          <p class="muted">${car.transmission || "Automatic"} • ${car.seats || 4} Seats • ${car.fuel || "Petrol"}</p>
           <div class="car-bottom">
-            <span class="price">$${Number(car.price_per_day)}/day</span>
+            <span class="price">$${Number(car.price_per_day || 0)}/day</span>
             <a class="mini-btn" href="car-details.html?car=${slug}">View</a>
           </div>
         </div>
@@ -180,10 +182,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const fuelValue = fuelFilter ? fuelFilter.value.toLowerCase() : "";
 
     const filteredCars = allCars.filter((car) => {
-      const carName = car.name.toLowerCase();
-      const carCategory = normalizeCategory(car.category);
-      const carTransmission = car.transmission.toLowerCase();
-      const carFuel = car.fuel.toLowerCase();
+      const carName = (car.name || "").toLowerCase();
+      const carCategory = normalizeCategory(car.category || "");
+      const carTransmission = (car.transmission || "").toLowerCase();
+      const carFuel = (car.fuel || "").toLowerCase();
 
       const matchesName = !nameValue || carName.includes(nameValue);
       const matchesCategory = !categoryValue || carCategory === categoryValue;
@@ -198,10 +200,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadCars() {
     try {
-      const response = await fetch("http://localhost:5000/api/cars");
-      const data = await response.json();
+      const response = await fetch("/api/cars");
 
-      allCars = data;
+      if (!response.ok) {
+        throw new Error("Failed to fetch cars");
+      }
+
+      const data = await response.json();
+      allCars = Array.isArray(data) ? data : [];
       renderCars(allCars);
     } catch (error) {
       console.error("Error loading cars:", error);
