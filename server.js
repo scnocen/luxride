@@ -11,15 +11,15 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files (HTML, CSS, JS, images)
+// Serve static files
 app.use(express.static(path.join(__dirname)));
 
-// Home route -> open index.html
+// Home route -> index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Fallback static cars if DB fails
+// Fallback cars if database fails
 const fallbackCars = [
   {
     id: 1,
@@ -28,7 +28,8 @@ const fallbackCars = [
     price_per_day: 120,
     transmission: "Automatic",
     fuel: "Petrol",
-    seats: 4
+    seats: 4,
+    category: "Sport"
   },
   {
     id: 2,
@@ -37,7 +38,8 @@ const fallbackCars = [
     price_per_day: 100,
     transmission: "Automatic",
     fuel: "Petrol",
-    seats: 5
+    seats: 5,
+    category: "Luxury"
   },
   {
     id: 3,
@@ -46,7 +48,8 @@ const fallbackCars = [
     price_per_day: 110,
     transmission: "Automatic",
     fuel: "Petrol",
-    seats: 5
+    seats: 5,
+    category: "Luxury"
   }
 ];
 
@@ -73,7 +76,7 @@ app.get("/api/cars/:name", (req, res) => {
         console.error("DB error on /api/cars/:name:", err.message);
 
         const car = fallbackCars.find(
-          c => c.name.toLowerCase() === carName.toLowerCase()
+          (c) => c.name.toLowerCase() === carName.toLowerCase()
         );
 
         if (!car) {
@@ -111,9 +114,8 @@ app.post("/api/bookings", (req, res) => {
     (err, result) => {
       if (err) {
         console.error("DB error on /api/bookings:", err.message);
-
         return res.json({
-          message: "Booking received (demo mode - not saved to database)",
+          message: "Booking received in demo mode",
           bookingId: Math.floor(Math.random() * 100000)
         });
       }
@@ -126,6 +128,7 @@ app.post("/api/bookings", (req, res) => {
   );
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
